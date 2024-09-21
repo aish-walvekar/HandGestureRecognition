@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Math</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main">
+        <div class="upper">
+            <div class="nav">
+                <button id="aboutpage">About</button>
+            </div>
+            <div class="heading">
+                Welcome to <br>
+                HandyMath!!
+            </div>
+        </div>
+        <div class="lower">
+            <button id="cameraOpen">Start</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    const cameraButton = document.getElementById('cameraOpen');
+    
+    cameraButton.addEventListener('click', handleCameraClick);
+
+    function handleCameraClick()
+    {
+        //Camera Open
+        fetch('http://127.0.0.1:5000/run')
+            .then(res => res.json())
+            .then(data => {
+            }
+        ).catch(e => {
+        console.error(error)
+        })
+
+        //Instructions Page
+        window.location.href = 'http://127.0.0.1:5000/instructions';
+    }
+
+    const aboutButton = document.getElementById('aboutpage');
+    console.log(aboutButton);
+    aboutButton.addEventListener('click', handleAboutClick);
+
+    function handleAboutClick()
+    {
+        window.location.href = 'http://127.0.0.1:5000/aboutpage';
+    }
+
+</script>
+</html>

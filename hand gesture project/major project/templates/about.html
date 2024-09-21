@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Math</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main">
+        <div class="upper">
+            <div class="nav">
+                <button id="home">Home</button>
+            </div>
+        </div>
+        <div class="about-main">
+            The primary purpose of "HandyMath: A Gesture Controlled Calculator" is to provide a tool that fosters engagement and learning in mathematics while addressing the needs of users with physical limitations. 
+            By offering an alternative input method based on hand gestures, HandyMath opens up new possibilities for individuals who may struggle with conventional input devices due to disabilities or other challenges. 
+            HandyMath is an innovative calculator application that utilizes gesture recognition technology to allow users to perform mathematical calculations using hand movements. Developed with a focus on inclusivity, 
+            HandyMath provides an intuitive and interactive interface that caters to both children and individuals with physical challenges. Using a webcam or camera-equipped device, 
+            HandyMath detects hand gestures and translates them into numerical inputs and arithmetic operations. Users can simply make gestures in the air to input numbers, select operators, 
+            and perform calculations without the need for traditional keyboard or touchscreen input. The application offers real-time text and voice feedback, ensuring users can verify their inputs and results effortlessly. 
+            By leveraging modern web technologies and prioritizing accessibility, HandyMath aims to make math learning enjoyable and accessible for everyone, fostering an inclusive environment for mathematical exploration and skill development.   
+        </div>
+    </div>
+
+    <script>
+         const homeButton = document.getElementById('home');
+        homeButton.addEventListener('click', handleHomeClick);
+
+        function handleHomeClick()
+        {
+            window.location.href = 'http://127.0.0.1:5000/';
+        }
+
+    </script>
+</body>

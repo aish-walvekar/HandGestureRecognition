@@ -3,9 +3,27 @@ import cv2
 import time
 import pyttsx3
 import mediapipe as mp
+import matplotlib.pyplot as plt
 
 # Initialize text-to-speech engine
 tts_engine = pyttsx3.init()
+
+gesture_count = {
+     "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "+": 0,
+    "-": 0,
+    "*": 0,
+    "/": 0
+}
 
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
@@ -31,6 +49,12 @@ second_number = ""
 operator = "" 
 calculation_result = ""  # Renamed to avoid conflict with MediaPipe result
 count = 0
+
+def log_gesture(gesture):
+    if str(gesture) in gesture_count:
+        gesture_count[str(gesture)] += 1
+    else:
+        print("Unrecognized gesture")
 
 #Using the x,y,z values it detects the gesture made by the person
 def detect_gesture(landmarks):
@@ -113,6 +137,7 @@ while True:
                 
                 # Detect the gesture
                 gesture = detect_gesture(landmarks)
+                log_gesture(gesture)
                 
                 if gesture == "Unknown Gesture":
                     speak(f"{gesture}")
@@ -151,7 +176,16 @@ while True:
                                 second_number=str(int(second_number))
                                 calculation_result = str(eval(first_number + operator + second_number))
                                 speak(f"The result is {calculation_result}")
+                                gestures = list(gesture_count.keys())  # Gestures (e.g., numbers, operators)
+                                counts = list(gesture_count.values())
+                                print(gestures,counts)
+                                plt.bar(gestures, counts, color='blue')
+                                plt.xlabel('Gesture')
+                                plt.ylabel('Frequency')
+                                plt.title('Gesture Detection Frequency')
+                                plt.show()
                             except Exception as e:
+                                print(e)
                                 calculation_result = "Error"
                                 speak("There was an error in the calculation")
                             input_state = "first number"
